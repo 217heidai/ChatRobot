@@ -19,7 +19,7 @@ class TulingRobot(object):
         self.__province, self.__city= self.__get_Location()
 
     def __get_apikey(self):# apiKey,机器人标识
-        return 'a323758630ff4d6dacf72d90b316fc3c'
+        return 'apikey'
     
     def __get_userId(self):# userId,用户唯一标识
         return str(get_mac())[:32]
