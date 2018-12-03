@@ -29,6 +29,10 @@ class ChatRobot(object):
             else:
                 response = self.__tuling.chat(request)
                 print "Robot:%s" % (response)
+                speechFile = self.__baiduTTS.TTS(response)
+                if os.path.exists(speechFile):
+                    self.__tools.play_mp3(speechFile)
+                    os.remove(speechFile)
 
     def voicechat(self): 
         print("Now u can talk to me\n")
