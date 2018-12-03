@@ -3,10 +3,11 @@
 # 文件名：location.py
 
 
-from urllib2 import urlopen
 from json import load
+from urllib2 import urlopen
 
 from tools import Tools
+
 
 """
 获取本机公网IP
@@ -15,11 +16,11 @@ class PublicIP(object):
     def __init__(self):
         self.__urlPool = {
             'http://jsonip.com': 'ip',
-            'http://httpbin.org/ip': 'origin', 
+            'http://httpbin.org/ip': 'origin',
             'https://api.ipify.org/?format=json': 'ip'
         }
         self.__tools = Tools()
-    
+
     def get_IP(self):
         ipList = []
         for url, keyWorld in self.__urlPool.items():
@@ -34,6 +35,8 @@ class PublicIP(object):
             return ipList[0]
         else:
             raise Exception('can not get public ip')
+
+
 """
 IP定位
 """
@@ -43,11 +46,12 @@ class Location(object):
 
     def get_Location(self):
         ip = self.__publicIP.get_IP()
-        request = load(urlopen("http://ip.taobao.com/service/getIpInfo.php?ip={}".format(ip)))
-        if request['data']['city'] in ['XX','']:
-            raise Exception('can not get public location')
+        request = load(
+            urlopen("http://ip.taobao.com/service/getIpInfo.php?ip={}".format(ip)))
+        if request['data']['city'] in ['XX', '']:
+            return '', '', ''
         else:
-            country = request['data']['country'] #国家
-            province = request['data']['region'] #省份
-            city = request['data']['city'] #城市
+            country = request['data']['country']  # 国家
+            province = request['data']['region']  # 省份
+            city = request['data']['city']  # 城市
             return country, province, city
