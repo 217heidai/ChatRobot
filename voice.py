@@ -12,7 +12,7 @@ from tools import Tools
 class Voice(object):
     def __init__(self):
         self.__filename = "speech.wav"
-        self.__time = 0 # 录音时间,如果指定时间，按时间来录音，默认为自动识别是否结束录音
+        self.__time = 5 # 录音时间,如果指定时间，按时间来录音，默认为自动识别是否结束录音
         self.__threshold = 7000 # 判断录音结束的阈值
         self.__tools = Tools()
 
